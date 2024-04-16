@@ -8,6 +8,7 @@ const morganMiddleware = require("./utils/morgan");
 const errorHandler = require("./utils/errorHandler");
 const { jsonS } = require("./utils");
 
+const studentRoute = require("./app/routes/student");
 const app = express();
 // create a rotating write stream
 app.use(addRequestId());
@@ -31,6 +32,8 @@ app.use(
 app.use(
   session({ secret: "secretpass123456", saveUninitialized: true, resave: true })
 );
+
+app.use("/student", studentRoute);
 
 app.get("/", (req, res) => {
   return jsonS(
