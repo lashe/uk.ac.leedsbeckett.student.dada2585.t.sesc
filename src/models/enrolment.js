@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      courseId: {
+      courseCode: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -34,14 +34,14 @@ module.exports = (sequelize, DataTypes) => {
   );
   Enrolment.associate = (models) => {
     Enrolment.belongsTo(models.Student, {
-        as: "students",
+        as: "student",
         foreignKey: "studentId",
         targetKey: "studentId",
       });
       Enrolment.belongsTo(models.Course, {
-        as: "courses",
-        foreignKey: "courseId",
-        targetKey: "courseId",
+        as: "course",
+        foreignKey: "courseCode",
+        targetKey: "courseCode",
       });
   };
   return Enrolment;

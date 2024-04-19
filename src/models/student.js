@@ -30,10 +30,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true
       },
-      dob: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       studentId: {
         type: DataTypes.STRING,
         allowNull: false,
