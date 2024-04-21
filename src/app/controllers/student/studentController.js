@@ -1,7 +1,7 @@
 const models = require("../../../models");
 const { jsonS, jsonFailed } = require("../../../utils");
 const bcrypt = require("bcryptjs");
-const { createAccount, createInvoice } = require("../../services/finance");
+const { createAccount, createInvoice, getAllInvoice } = require("../../services/finance");
 const { validateCourse } = require("../../services/validator");
 
 let controller = {
@@ -119,6 +119,29 @@ let controller = {
         return jsonS(res, 200, "Enrolments", getallEnrolment);
     },
 
+    getAllInvoicesForAStudent: async (req, res) => {
+        const { studentId } = req.user;
+        const getInvoices = await getAllInvoice(studentId);
+        if(!getInvoices) {
+            return jsonFailed(res, {}, "Error Fetching Invoices", 404);
+        }
+
+        const data = getInvoices._embedded.invoiceList;
+        return jsonS(res, 200, "successful", data);
+    },
+
+    graduationEligibility: async (req, res) => {
+        const { studentId } = req.user;
+        const getInvoices = await getAllInvoice(studentId);
+        if(!getInvoices) {
+            return jsonFailed(res, {}, "Error Getting Eligibility", 404);
+        }
+        const data = getInvoices._embedded.invoiceList;
+        if(data.length > 0){
+            return jsonFailed(res, {}, "Not Eligible for Graduation", 400);
+        }
+        return jsonS(res, 200, "Eligible for Graduation", data); 
+    }
     
     };
     module.exports = controller;

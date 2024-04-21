@@ -48,11 +48,36 @@ const createInvoice = async (invoice) =>{
         };
         return result;
       } catch (error) {
-        console.error(`${TAG}::${String(error)}`);
+        console.error(error);
         return null;
       }
 };
+
+const getAllInvoice = async (studentId) =>{
+  try {
+      const response = await axios.get(`http://localhost:8081/invoice/${studentId}`, {
+        validateStatus: () => true,
+      });
+      if (response.status === 200) {
+        const result = {
+          code: response.status,
+          ...response.data,
+        };
+        return result;
+      }
+      const result = {
+        code: response.status,
+        ...response.data,
+      };
+      return result;
+    } catch (error) {
+      console.error(error);
+        return null;
+    }
+};
+
 module.exports = {
     createAccount,
-    createInvoice
+    createInvoice,
+    getAllInvoice
 }

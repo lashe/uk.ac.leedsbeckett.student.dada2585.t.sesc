@@ -9,6 +9,8 @@ student.post("/profile", auth, StudentController.updateProfile);
 student.get("/course", StudentController.viewCourses);
 student.post("/enrol", auth, StudentController.enrolToCourse);
 student.get("/enrolled/courses", auth, StudentController.getEnrolment);
+student.get("/invoices/outstanding/all", auth, StudentController.getAllInvoicesForAStudent);
+student.get("/gaduation/eligibility", auth, StudentController.graduationEligibility);
 
 // 404 response
 student.get("**", function (req, res) {
