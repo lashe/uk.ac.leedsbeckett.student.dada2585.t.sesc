@@ -21,9 +21,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      courseId: {
+      courseCode: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
+      },
+      amount: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
       },
       isDeleted: {
         type: DataTypes.BOOLEAN,
