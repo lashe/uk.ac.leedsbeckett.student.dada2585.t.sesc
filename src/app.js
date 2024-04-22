@@ -9,6 +9,7 @@ const errorHandler = require("./utils/errorHandler");
 const { jsonS } = require("./utils");
 
 const studentRoute = require("./app/routes/student");
+const adminRoute = require("./app/routes/admin");
 const app = express();
 // create a rotating write stream
 app.use(addRequestId());
@@ -34,6 +35,7 @@ app.use(
 );
 
 app.use("/student", studentRoute);
+app.use("/admin", adminRoute);
 
 app.get("/", (req, res) => {
   return jsonS(
