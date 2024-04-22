@@ -3,6 +3,7 @@ const { jsonS, jsonFailed } = require("../../../utils");
 const bcrypt = require("bcryptjs");
 const { createAccount, createInvoice, getAllInvoice } = require("../../services/finance");
 const { validateCourse } = require("../../services/validator");
+const { createLibAccount } = require("../../services/library");
 
 let controller = {
     register: async (req, res)=> {
@@ -20,6 +21,7 @@ let controller = {
             password: hashedPassword });
         if(createStudent) {
             const finance = await createAccount(studentId);
+            await createLibAccount(studentId);
             return jsonS(res, 200, "successful", finance);
         }
         return jsonFailed(res, {}, "failed", 400);
