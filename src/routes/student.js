@@ -1,5 +1,5 @@
-const { StudentController, AuthController } = require("../controllers/student");
-const auth = require("../middlewares/studentAuth/authMiddleware");
+const { StudentController, AuthController } = require("../app/controllers/student");
+const auth = require("../app/middlewares/studentAuth/authMiddleware");
 const student = require("express").Router();
 // register
 student.post("/register", StudentController.register);

@@ -7,17 +7,26 @@ const addRequestId = require("express-request-id");
 const morganMiddleware = require("./utils/morgan");
 const errorHandler = require("./utils/errorHandler");
 const { jsonS } = require("./utils");
+const path = require('path');
 
-const studentRoute = require("./app/routes/student");
-const adminRoute = require("./app/routes/admin");
+const studentRoute = require("./routes/student");
+const adminRoute = require("./routes/admin");
+
 const app = express();
 // create a rotating write stream
 app.use(addRequestId());
 app.set("trust proxy", true);
 
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morganMiddleware);
+
+// Serve static files from the public directory
+app.use(express.static('public'));
+
 // adding Helmet to enhance API's security
 app.use(helmet());
 
@@ -35,7 +44,16 @@ app.use(
 );
 
 app.use("/student", studentRoute);
+
 app.use("/admin", adminRoute);
+
+app.get('/login', (req, res) => {
+  res.render(path.join(__dirname, 'views', 'login'));
+});
+
+app.get('/register', (req, res) => {
+  res.render(path.join(__dirname, 'views', 'register'));
+});
 
 app.get("/", (req, res) => {
   return jsonS(

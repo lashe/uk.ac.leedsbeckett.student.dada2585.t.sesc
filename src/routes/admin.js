@@ -1,4 +1,4 @@
-const { AdminController } = require("../controllers/admin");
+const { AdminController } = require("../app/controllers/admin");
 
 
 const admin = require("express").Router();

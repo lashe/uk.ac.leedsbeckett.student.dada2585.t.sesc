@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const createLibAccount = async (studentId)=>{
     try {
-        const response = await axios.post("http://localhost/api/register", {
+        const response = await axios.post("http://localhost:8082/api/register", {
             studentId,
           validateStatus: () => true,
         });
@@ -19,7 +19,7 @@ const createLibAccount = async (studentId)=>{
         };
         return result;
       } catch (error) {
-        console.error(`${TAG}::${String(error)}`);
+        console.error(error);
         return null;
       }
 };
