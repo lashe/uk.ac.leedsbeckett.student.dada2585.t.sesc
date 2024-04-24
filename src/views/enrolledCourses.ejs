@@ -1,0 +1,26 @@
+<!-- enrolled.ejs -->
+<html>
+  <head>
+    <link href="style/courses.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="fonts/linearicons/style.css" />
+
+    <script src="javascript/jquery-3.3.1.min.js"></script>
+    <script>
+      let eligible = "hello";
+    </script>
+    <script src="javascript/enrolled-fetch.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h3>Enrolled Courses</h3>
+      <div class="ag-format-container">
+        <div class="ag-courses_box" id="add_activity"></div>
+      </div>
+      <button id="eligible" onclick="onEligible()" class="eligibility_button">
+        Graduation Eligibility
+      </button>
+      <p id="eligibility_text"></p>
+    </div>
+  </body>
+</html>

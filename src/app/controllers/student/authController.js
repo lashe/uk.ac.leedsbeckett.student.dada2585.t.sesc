@@ -5,12 +5,15 @@ const jwt = require("jsonwebtoken");
 const config = require("../../../config/jwt");
 
 let controller = {
+  // Student Login
     login: async (req, res)=> {
         const { studentId, password } = req.body
+        // check if student id exists
         const isStudent = await models.Student.findOne({ where: { studentId: studentId }});
         if(!isStudent){
             return jsonFailed(res, {}, "Invalid Credentials", 400);
         }
+        // compare hashed password against password from request body;
         let passwordIsValid = bcrypt.compareSync(
             password,
             isStudent.password
@@ -23,6 +26,7 @@ let controller = {
         return jsonS(res, 200, "Successful", data);
     },
     
+    // get authentication json web token
     getToken: (user) => {
       let token = jwt.sign(
         { id: user.uuid, email: user.email, studentId: user.studentId },

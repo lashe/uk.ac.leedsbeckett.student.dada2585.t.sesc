@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morganMiddleware);
 
 // Serve static files from the public directory
-app.use(express.static('public'));
+app.use(express.static(__dirname + "/public"));
 
 // adding Helmet to enhance API's security
 app.use(helmet());
@@ -47,12 +47,20 @@ app.use("/student", studentRoute);
 
 app.use("/admin", adminRoute);
 
-app.get('/login', (req, res) => {
-  res.render(path.join(__dirname, 'views', 'login'));
+app.get("/login", (req, res) => {
+  res.render(path.join(__dirname, "views", "login"));
 });
 
-app.get('/register', (req, res) => {
-  res.render(path.join(__dirname, 'views', 'register'));
+app.get("/register", (req, res) => {
+  res.render(path.join(__dirname, "views", "register"));
+});
+
+app.get("/courses", (req, res) => {
+  res.render(path.join(__dirname, "views", "courses"));
+});
+
+app.get("/enrolled-courses", (req, res) => {
+  res.render(path.join(__dirname, "views", "enrolledCourses"));
 });
 
 app.get("/", (req, res) => {

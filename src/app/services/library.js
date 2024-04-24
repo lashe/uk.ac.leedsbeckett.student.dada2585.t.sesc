@@ -1,5 +1,6 @@
 const axios = require("axios");
 
+// create a student account on the library microservice
 const createLibAccount = async (studentId)=>{
     try {
         const response = await axios.post("http://localhost:8082/api/register", {

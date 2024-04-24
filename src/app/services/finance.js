@@ -1,5 +1,6 @@
 const axios = require("axios");
 
+// create a finance account for a student
 const createAccount = async (studentId) =>{
     try {
         const response = await axios.post("http://localhost:8081/accounts/", {
@@ -24,6 +25,7 @@ const createAccount = async (studentId) =>{
       }
 };
 
+// create invoice for a course a student is enrolled on
 const createInvoice = async (invoice) =>{
     try {
         const response = await axios.post("http://localhost:8081/invoices/", {
@@ -53,6 +55,7 @@ const createInvoice = async (invoice) =>{
       }
 };
 
+// get all outstanding invoices for a student from the finance microservice
 const getAllInvoice = async (studentId) =>{
   try {
       const response = await axios.get(`http://localhost:8081/invoice/${studentId}`, {
