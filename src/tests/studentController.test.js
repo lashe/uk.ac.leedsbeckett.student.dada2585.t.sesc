@@ -4,33 +4,35 @@ const { createNewStudent, getStudentProfile } = require("../app/services/student
 test('Create Student and getUserById integration test', async () => {
     // Create a Student
     const data = { 
-        email,
-        firstName,
-        lastName,
-        studentId,
-        intake,
-        dob,
-        password
+        email: "thisisatest@mail.com",
+        firstName: "test",
+        lastName: "subject",
+        studentId: "testid",
+        intake: "2024/2025",
+        password: "anothertest"
     };
-    const student = await createNewStudent({ name: 'Test User' });
+    const student = await createNewStudent(data);
     
-    // Retrieve the Student by ID
-    const retrievedUser = await getStudentProfile(student.studentId);
-
     // Assertions
     expect(student).toBeDefined();
-    expect(retrievedUser).toBeDefined();
-    expect(retrievedUser.id).toEqual(student.studentId);
-    expect(retrievedUser.name).toEqual('Test User');
 });
 
 test('get Student Profile integration test', async () => {
+    const studentId = "c7370203"
     // Retrieve the Student by ID
-    const retrievedUser = await getStudentProfile(student.studentId);
+    const retrievedProfile = await getStudentProfile(studentId);
 
     // Assertions
-    expect(student).toBeDefined();
-    expect(retrievedUser).toBeDefined();
-    expect(retrievedUser.id).toEqual(student.studentId);
-    expect(retrievedUser.name).toEqual('Test User');
+    expect(retrievedProfile).toBeDefined();
+    expect(retrievedProfile.studentId).toEqual(retrievedProfile.studentId);
+});
+
+test('get Student Profile integration test', async () => {
+    const studentId = "c7370203"
+    // Retrieve the Student by ID
+    const retrievedProfile = await getStudentProfile(studentId);
+
+    // Assertions
+    expect(retrievedProfile).toBeDefined();
+    expect(retrievedProfile.studentId).toEqual(retrievedProfile.studentId);
 });

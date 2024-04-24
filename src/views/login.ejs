@@ -1,7 +1,45 @@
 <!-- login.ejs -->
-<h1>Login</h1>
-<form action="/student/login" method="POST">
-    <input type="text" name="studentId" placeholder="Student ID">
-    <input type="password" name="password" placeholder="Password">
-    <button type="submit">Login</button>
-</form>
+<html>
+  <head>
+    <link href="style/style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="fonts/linearicons/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="inner">
+        <img src="images/image-1.png" alt="" class="image-1" />
+        <form action="/student/auth/login" method="POST" id="loginForm">
+          <h3>Sign In</h3>
+          <div class="form-holder">
+            <span class="lnr lnr-lock"></span>
+            <input
+              type="text"
+              class="form-control"
+              name="studentId"
+              id="studentId"
+              placeholder="Student ID"
+            />
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-lock"></span>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              id="password"
+              placeholder="Password"
+            />
+          </div>
+          <button type="submit">
+            <span>login</span>
+          </button>
+          <a href="/register" class="bottom-text">Not a user? register</a>
+        </form>
+        <img src="images/image-2.png" alt="" class="image-2" />
+      </div>
+    </div>
+    <script src="javascript/jquery-3.3.1.min.js"></script>
+    <script src="javascript/main.js"></script>
+  </body>
+</html>
